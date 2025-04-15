@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Launch Chrome with remote debugging",
+        "type": "shell",
+        "command": "Start-Process",
+        "args": [
+          "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\"",
+          "-ArgumentList",
+          "\"--remote-debugging-port=9222\""
+        ],
+        "problemMatcher": [],
+        "windows": {
+          "command": "powershell.exe"
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "silent",
+          "focus": false,
+          "panel": "shared"
+        }
+      }
+    ]
+  }
+  
