@@ -2,6 +2,10 @@
 frontend for Vision doc
 
 Folder structure
+
+# 📁 Frontend Folder Structure
+
+```bash
 src/
 ├── assets/                 # Static assets like icons, logos, etc.
 ├── components/             # Reusable UI components
@@ -36,3 +40,6 @@ src/
 ├── App.jsx                 # Root component
 ├── index.js                # Entry point
 └── vite.config.js / webpack.config.js
+
+```
+
