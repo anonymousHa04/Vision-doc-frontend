@@ -3,17 +3,6 @@
 import useTheme from "../../hooks/useTheme";
 
 function Sidebar() {
-    const [theme, setTheme] = useTheme();
-
-    const toggleTheme = () => {
-        setTheme((prevTheme: string) => (prevTheme === "dark" ? "light" : "dark"));
-    };
-
-    const handleButtonClick = () => {
-        console.log("Button clicked!");
-        toggleTheme();
-    };
-
     return (
         <div className="sidebar">
             <div className="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5">
@@ -29,13 +18,6 @@ function Sidebar() {
                 </p>
             </div>
             <h2>Sidebar</h2>
-            <button
-                className='bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition duration-300 ease-in-out'
-                onClick={handleButtonClick}
-            >
-                {/* <svg className="h-6 w-6 stroke-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> */}
-                Button to change theme
-            </button>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
