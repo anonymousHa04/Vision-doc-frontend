@@ -5,26 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch chrome",
+            "port": 7222,
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
             "name": "Attach to Chrome",
             "port": 9222,
             "request": "attach",
             "type": "chrome",
             "url": "http://localhost:5173",
             "webRoot": "${workspaceFolder}"
-        },
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:5173",
-            "webRoot": "${workspaceFolder}"
-        }
-    ],
-    "compounds": [
-        {
-            "name": "Start Chrome and Attach",
-            "configurations": ["Attach to Chrome"],
-            "preLaunchTask": "Launch Chrome with remote debugging"
         }
     ]
 }
