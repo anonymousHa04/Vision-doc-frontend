@@ -1,17 +1,19 @@
 // Navbar
+import { Menu, Trash2 } from 'lucide-react';
 import React from 'react';
 
-function Navbar() {
+function Navbar({ toggleSidebar }: { toggleSidebar: () => void }) {
     return (
-        <nav className="navbar">
-            <h1>Navbar</h1>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div className="flex items-center justify-between px-4 py-2 border-b dark:border-zinc-700 bg-white dark:bg-zinc-900 text-black dark:text-white shadow-md">
+            <button
+                onClick={toggleSidebar}
+                className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-zinc-800 p-2 rounded"
+            >
+                {/* <Trash2 size={20} /> */}
+                <Menu size={20} />
+            </button>
+            <span className="font-bold text-lg">Vision Docs</span>
+        </div>
     );
 }
 

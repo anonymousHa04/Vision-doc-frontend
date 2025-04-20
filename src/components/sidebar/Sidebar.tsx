@@ -1,49 +1,47 @@
-// this is the sidebar component 
+// src/components/Sidebar.tsx
+import React, { useEffect, useState } from "react";
+import { Sun, Moon, Menu, Plus, Trash2 } from "lucide-react";
 
-import useTheme from "../../hooks/useTheme";
+const Sidebar = ({ isOpen }: { isOpen: boolean }) => {
+    const [open, setOpen] = useState(isOpen);
 
-function Sidebar() {
-    const [theme, setTheme] = useTheme();
-
-    const toggleTheme = () => {
-        setTheme((prevTheme: string) => (prevTheme === "dark" ? "light" : "dark"));
-    };
-
-    const handleButtonClick = () => {
-        console.log("Button clicked!");
-        toggleTheme();
-    };
+    useEffect(() => {
+        setOpen(isOpen);
+    }, [isOpen]);
 
     return (
-        <div className="sidebar">
-            <div className="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5">
-                <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        </svg>
-                    </span>
-                </div>
-                <h3 className="text-gray-900 dark:text-white mt-5 text-base font-medium tracking-tight ">Writes upside-down</h3>
-                <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm ">
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                </p>
-            </div>
-            <h2>Sidebar</h2>
-            <button
-                className='bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition duration-300 ease-in-out'
-                onClick={handleButtonClick}
-            >
-                {/* <svg className="h-6 w-6 stroke-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> */}
-                Button to change theme
+        <div
+            className={`
+                h-full 
+                transition-all 
+                duration-300 
+                ease-in-out 
+                bg-gray-100 dark:bg-zinc-900 
+                text-black dark:text-white border-r 
+                dark:border-zinc-700 
+                ${open ? "w-64" : "w-0 overflow-hidden"}`
+            }>
+            {/* New Chat */}
+            <button className="flex items-center gap-2 p-4 hover:bg-gray-200 dark:hover:bg-zinc-800 transition">
+                <Plus size={20} />
+                {open && <span>New Chat</span>}
             </button>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+
+            {/* Chat List */}
+            <div className="flex-1 overflow-auto px-2 space-y-2 mt-4">
+
+                {Array.from({ length: 5 }).map((_, i) => (
+                    <div
+                        key={i}
+                        className="bg-gray-200 dark:bg-zinc-800 p-3 rounded hover:bg-gray-300 dark:hover:bg-zinc-700 cursor-pointer text-sm"
+                    >
+                        {`Conversation ${i + 1} ${open ? "Open" : "closed"}`}
+                    </div>
+                ))}
+            </div>
         </div>
+
     );
-}
+};
 
 export default Sidebar;
