@@ -5,6 +5,9 @@ import { Sun, Moon, Menu, Plus, Trash2 } from "lucide-react";
 const Sidebar = () => {
     const [open, setOpen] = useState(true);
 
+    // Handle keyboard shortcuts for opening/closing the sidebar
+    // Ctrl + B (or Cmd + B on Mac) to toggle the sidebar
+
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             const isMac = navigator.userAgent.includes("Mac");
@@ -24,18 +27,17 @@ const Sidebar = () => {
 
     return (
         <div
-            className={`h-screen transition-all duration-300 flex flex-col ${open ? "w-64" : "w-16"
-                } 
-      transform ${open ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
-                }
-      bg-gray-100 dark:bg-zinc-900 text-black dark:text-white border-r dark:border-zinc-700`}
-        >
+            className={`h-screen transition-all duration-300 flex flex-col w-64 transform 
+                ${open ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}
+                word-wrap overflow-hidden
+                bg-gray-100 dark:bg-zinc-900 text-black dark:text-white border-r dark:border-zinc-700`
+            }>
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b dark:border-zinc-700">
                 <button onClick={() => setOpen(!open)}>
                     <Menu />
                 </button>
-                {open && <span className="text-lg font-bold">ChatGPT</span>}
+                {open && <span className="text-lg font-bold">Vision Docs</span>}
             </div>
 
             {/* New Chat */}
@@ -51,11 +53,12 @@ const Sidebar = () => {
                         key={i}
                         className="bg-gray-200 dark:bg-zinc-800 p-3 rounded hover:bg-gray-300 dark:hover:bg-zinc-700 cursor-pointer text-sm"
                     >
-                        {open ? `Conversation ${i + 1}` : `#${i + 1}`}
+                        {`Conversation ${i + 1}`}
                     </div>
                 ))}
             </div>
         </div>
+
     );
 };
 
