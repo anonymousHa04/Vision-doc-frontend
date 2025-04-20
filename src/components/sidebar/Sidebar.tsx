@@ -1,45 +1,26 @@
 // src/components/Sidebar.tsx
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Sun, Moon, Menu, Plus, Trash2 } from "lucide-react";
 
-const Sidebar = () => {
-    const [open, setOpen] = useState(true);
-
-    // Handle keyboard shortcuts for opening/closing the sidebar
-    // Ctrl + B (or Cmd + B on Mac) to toggle the sidebar
+const Sidebar = ({ isOpen }: { isOpen: boolean }) => {
+    const [open, setOpen] = useState(isOpen);
 
     useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            const isMac = navigator.userAgent.includes("Mac");
-            const isCtrlOrCmd = isMac ? event.metaKey : event.ctrlKey;
-
-            if (isCtrlOrCmd && event.key.toLowerCase() === "b") {
-                event.preventDefault(); // Prevent default browser behavior
-                setOpen((prev) => !prev);
-            }
-        }
-
-        window.addEventListener("keydown", handleKeyDown);
-        return () => {
-            window.removeEventListener("keydown", handleKeyDown);
-        };
-    }, [])
+        setOpen(isOpen);
+    }, [isOpen]);
 
     return (
         <div
-            className={`h-screen transition-all duration-300 flex flex-col w-64 transform 
-                ${open ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}
-                word-wrap overflow-hidden
-                bg-gray-100 dark:bg-zinc-900 text-black dark:text-white border-r dark:border-zinc-700`
+            className={`
+                h-full 
+                transition-all 
+                duration-300 
+                ease-in-out 
+                bg-gray-100 dark:bg-zinc-900 
+                text-black dark:text-white border-r 
+                dark:border-zinc-700 
+                ${open ? "w-64" : "w-0 overflow-hidden"}`
             }>
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b dark:border-zinc-700">
-                <button onClick={() => setOpen(!open)}>
-                    <Menu />
-                </button>
-                {open && <span className="text-lg font-bold">Vision Docs</span>}
-            </div>
-
             {/* New Chat */}
             <button className="flex items-center gap-2 p-4 hover:bg-gray-200 dark:hover:bg-zinc-800 transition">
                 <Plus size={20} />
@@ -48,12 +29,13 @@ const Sidebar = () => {
 
             {/* Chat List */}
             <div className="flex-1 overflow-auto px-2 space-y-2 mt-4">
+
                 {Array.from({ length: 5 }).map((_, i) => (
                     <div
                         key={i}
                         className="bg-gray-200 dark:bg-zinc-800 p-3 rounded hover:bg-gray-300 dark:hover:bg-zinc-700 cursor-pointer text-sm"
                     >
-                        {`Conversation ${i + 1}`}
+                        {`Conversation ${i + 1} ${open ? "Open" : "closed"}`}
                     </div>
                 ))}
             </div>
