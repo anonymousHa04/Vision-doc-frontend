@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Home from './Home/Home';
 import useTheme from './hooks/useTheme';
 
@@ -10,13 +10,27 @@ function App() {
   };
 
   const handleButtonClick = () => {
-    console.log("Button clicked!");
     toggleTheme();
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.altKey && event.key.toLowerCase() === "t") {
+        event.preventDefault(); 
+        toggleTheme();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <>
-      <button
+      {/* <button
         className='bg-blue-500 
         text-white 
         px-4 py-2 
@@ -31,7 +45,7 @@ function App() {
         onClick={handleButtonClick}
       >
         Button to change theme
-      </button>
+      </button> */}
 
       <Home />
       
