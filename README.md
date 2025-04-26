@@ -46,4 +46,5 @@ src/
 
 ## Basic commands:
 toggle sidebar -> ctrl + b
+
 toggle theme -> alt + t
