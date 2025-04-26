@@ -1,0 +1,1 @@
+export const mainButtonStyle = "bg-gray-200 dark:bg-zinc-800 p-3 rounded hover:bg-gray-300 dark:hover:bg-zinc-700 cursor-pointer text-black dark:text-white"
