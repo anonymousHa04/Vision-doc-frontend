@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/navbar/Navbar";
 import MainContent from "../components/mainContent/MainContent";
+import { Routes, Route } from "react-router-dom";
+import SessionPage from "../Pages/SesssionPage";
 
 function Home() {
 
@@ -38,7 +40,12 @@ function Home() {
 
             <div className="flex flex-1">
                 <Sidebar isOpen = {sidebarOpen} />
-                <MainContent sidebarOpen={sidebarOpen} />
+                <Routes>
+                    {/* Define your routes here */}
+                    <Route path="/" element={<MainContent sidebarOpen={sidebarOpen} />} />
+                    <Route path="/session/:sessionId" element={<SessionPage />} />
+                </Routes>
+                {/* <MainContent sidebarOpen={sidebarOpen} /> */}
             </div>
         </div>
         
