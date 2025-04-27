@@ -1,6 +1,17 @@
+import { memo } from "react";
 import { mainButtonStyle } from "../../styles/tailwindCss";
+import { useNavigate } from "react-router";
 
-const MainContent = ({ sidebarOpen }: { sidebarOpen: boolean }) => {
+const MainContent = memo(({ sidebarOpen }: { sidebarOpen: boolean }) => {
+    const navigate = useNavigate();
+
+    // function to handle start session
+    const handleStartSession = () => {
+        const sessionId = crypto.randomUUID();
+        localStorage.setItem("sessionId", sessionId);
+        navigate(`/session/${sessionId}`);
+    };
+
     return (
         <main
             className={`flex-1 flex items-center justify-center flex-col transition-all duration-300 ease-in-out ${sidebarOpen ? "ml-0 md:ml-0" : ""
@@ -13,7 +24,7 @@ const MainContent = ({ sidebarOpen }: { sidebarOpen: boolean }) => {
                 <button className={mainButtonStyle}>
                     Create a Doc
                 </button>
-                <button className={mainButtonStyle}>
+                <button className={mainButtonStyle} onClick={handleStartSession}>
                     Start a Session
                 </button>
                 <button className={mainButtonStyle}>
@@ -22,6 +33,6 @@ const MainContent = ({ sidebarOpen }: { sidebarOpen: boolean }) => {
             </div>
         </main>
     );
-};
+});
 
 export default MainContent;
