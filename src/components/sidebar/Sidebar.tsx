@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Sun, Moon, Menu, Plus, Trash2 } from "lucide-react";
 
 const Sidebar = ({ isOpen }: { isOpen: boolean }) => {
-    const [open, setOpen] = useState(isOpen);
+    // const [open, setOpen] = useState(isOpen);
 
-    useEffect(() => {
-        setOpen(isOpen);
-    }, [isOpen]);
+    // useEffect(() => {
+    //     setOpen(isOpen);
+    // }, [isOpen]);
 
     return (
         <div
@@ -19,12 +19,12 @@ const Sidebar = ({ isOpen }: { isOpen: boolean }) => {
                 bg-gray-100 dark:bg-zinc-900 
                 text-black dark:text-white border-r 
                 dark:border-zinc-700 
-                ${open ? "w-64" : "w-0 overflow-hidden"}`
+                ${isOpen ? "w-64" : "w-0 overflow-hidden"}`
             }>
             {/* New Chat */}
             <button className="flex items-center gap-2 p-4 hover:bg-gray-200 dark:hover:bg-zinc-800 transition">
                 <Plus size={20} />
-                {open && <span>New Chat</span>}
+                {isOpen && <span>New Chat</span>}
             </button>
 
             {/* Chat List */}
@@ -35,7 +35,7 @@ const Sidebar = ({ isOpen }: { isOpen: boolean }) => {
                         key={i}
                         className="bg-gray-200 dark:bg-zinc-800 p-3 rounded hover:bg-gray-300 dark:hover:bg-zinc-700 cursor-pointer text-sm"
                     >
-                        {`Conversation ${i + 1} ${open ? "Open" : "closed"}`}
+                        {`Conversation ${i + 1} ${isOpen ? "Open" : "closed"}`}
                     </div>
                 ))}
             </div>
