@@ -3,11 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Sun, Moon, Menu, Plus, Trash2 } from "lucide-react";
 
 const Sidebar = ({ isOpen }: { isOpen: boolean }) => {
-    // const [open, setOpen] = useState(isOpen);
-
-    // useEffect(() => {
-    //     setOpen(isOpen);
-    // }, [isOpen]);
 
     return (
         <div
